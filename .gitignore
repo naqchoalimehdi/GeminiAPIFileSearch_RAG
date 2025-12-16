@@ -1,5 +1,5 @@
-# Environment variables
-.env
+# Environment variables (API keys should be added locally)
+
 
 # Python
 __pycache__/
