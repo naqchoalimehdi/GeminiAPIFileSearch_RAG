@@ -2,6 +2,10 @@
 
 A production-ready RAG (Retrieval Augmented Generation) application using Google's Gemini File Search API with FastAPI backend and modern web interface.
 
+## Screenshot
+
+![Gemini RAG Application](screenshot.png)
+
 ## Features
 
 - 🔍 **Semantic Search** - Find relevant information using AI-powered semantic search
