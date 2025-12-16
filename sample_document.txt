@@ -1,0 +1,46 @@
+This is a sample document for testing the Gemini RAG File Search application.
+
+Introduction to Artificial Intelligence
+========================================
+
+Artificial Intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. These processes include learning, reasoning, and self-correction.
+
+Machine Learning
+----------------
+
+Machine Learning is a subset of AI that provides systems the ability to automatically learn and improve from experience without being explicitly programmed. It focuses on the development of computer programs that can access data and use it to learn for themselves.
+
+Types of Machine Learning:
+1. Supervised Learning - Learning with labeled data
+2. Unsupervised Learning - Finding patterns in unlabeled data
+3. Reinforcement Learning - Learning through trial and error
+
+Deep Learning
+-------------
+
+Deep Learning is a subset of machine learning that uses neural networks with multiple layers. These neural networks attempt to simulate the behavior of the human brain to "learn" from large amounts of data.
+
+Applications of AI:
+- Natural Language Processing
+- Computer Vision
+- Robotics
+- Healthcare Diagnostics
+- Autonomous Vehicles
+- Recommendation Systems
+
+The Future of AI
+----------------
+
+The future of AI holds tremendous potential for transforming various industries. As technology advances, we can expect AI to become more sophisticated, ethical, and integrated into our daily lives.
+
+Key considerations for AI development:
+- Ethical AI development
+- Privacy and security
+- Transparency and explainability
+- Bias mitigation
+- Human-AI collaboration
+
+Conclusion
+----------
+
+AI is rapidly evolving and will continue to shape the future of technology and society. Understanding its fundamentals is crucial for anyone interested in technology and innovation.

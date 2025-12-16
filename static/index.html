@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini RAG - File Search</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="14" stroke="url(#gradient)" stroke-width="2"/>
+                    <path d="M16 8L20 16L16 24L12 16L16 8Z" fill="url(#gradient)"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                            <stop offset="0%" stop-color="#667eea"/>
+                            <stop offset="100%" stop-color="#764ba2"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <h1>Gemini RAG</h1>
+            </div>
+            <div class="header-info">
+                <span class="badge">File Search API</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h2>File Search Stores</h2>
+                    <button class="btn btn-primary" id="createStoreBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Create Store
+                    </button>
+                    <div class="stores-list" id="storesList">
+                        <div class="loading-skeleton"></div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h2>Upload File</h2>
+                    <div class="upload-area" id="uploadArea">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 8V32M24 8L16 16M24 8L32 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 32V40H40V32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <p>Drag & drop files here</p>
+                        <p class="upload-hint">or click to browse</p>
+                        <input type="file" id="fileInput" hidden accept=".pdf,.txt,.docx,.doc,.md,.json,.csv">
+                    </div>
+                    <div class="upload-progress" id="uploadProgress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p id="uploadStatus">Uploading...</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <main class="chat-area">
+                <div class="chat-header">
+                    <h2>Chat with Your Documents</h2>
+                    <div class="chat-info">
+                        <span id="selectedStore">No store selected</span>
+                    </div>
+                </div>
+
+                <div class="messages-container" id="messagesContainer">
+                    <div class="welcome-message">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                            <circle cx="32" cy="32" r="28" stroke="url(#gradient2)" stroke-width="2"/>
+                            <path d="M32 16L40 32L32 48L24 32L32 16Z" fill="url(#gradient2)"/>
+                            <defs>
+                                <linearGradient id="gradient2" x1="0" y1="0" x2="64" y2="64">
+                                    <stop offset="0%" stop-color="#667eea"/>
+                                    <stop offset="100%" stop-color="#764ba2"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <h3>Welcome to Gemini RAG</h3>
+                        <p>Upload documents and start asking questions</p>
+                        <div class="features">
+                            <div class="feature">
+                                <span>📄</span>
+                                <p>Semantic Search</p>
+                            </div>
+                            <div class="feature">
+                                <span>🔍</span>
+                                <p>Smart Citations</p>
+                            </div>
+                            <div class="feature">
+                                <span>⚡</span>
+                                <p>Fast Retrieval</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-area">
+                    <div class="input-container">
+                        <textarea 
+                            id="queryInput" 
+                            placeholder="Ask a question about your documents..."
+                            rows="1"
+                        ></textarea>
+                        <button class="btn-send" id="sendBtn" disabled>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M18 2L9 11M18 2L12 18L9 11M18 2L2 8L9 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Create Store Modal -->
+    <div class="modal" id="createStoreModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create File Search Store</h3>
+                <button class="modal-close" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label for="storeName">Store Name</label>
+                <input type="text" id="storeName" placeholder="e.g., my-documents-store">
+                <p class="hint">Give your store a descriptive name</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
+                <button class="btn btn-primary" id="confirmCreateBtn">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
